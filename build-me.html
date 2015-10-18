@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="build-me.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4"><label>Name:</label>
+			<input type="text" placeholder="Character Name"></div>
+			<div class="col-xs-4"><label>Alignment:</label>
+			<input type="text" placeholder="Character Name"></div>
+			<div class="col-xs-4"><label>Background:</label>
+			<input type="text" placeholder="Character Name"></div>
+		</div>
+		<div class="row">
+			<button onclick="rollDice()">Roll d20</button>
+			<button onclick="genAbilScores()">Roll Ability Scores</button>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<label>Race:</label>
+				<select id="raceMenu">
+					<option value="0">---Pick a Race---</option>
+					<option value="1">Dwarf</option>
+					<option value="2">Elf</option>
+					<option value="3">Halfling</option>
+					<option value="4">Human</option>
+					<option value="5">Dragonborn</option>
+					<option value="6">Gnome</option>
+					<option value="7">Half-Elf</option>
+					<option value="8">Half-Orc</option>
+					<option value="9">Tiefling</option>
+				</select>
+			</div>
+
+			<div id="classes" class="col-xs-4">
+				<input type="checkbox" name="Barbarian" value="Barbarian"> Barbarian
+				<input type="checkbox" name="Bard" value="Bard">Bard
+				<input type="checkbox" name="Cleric" value="Cleric">Cleric<br>
+				<input type="checkbox" name="Druid" value="Druid">Druid
+				<input type="checkbox" name="Fighter" value="Fighter">Fighter
+				<input type="checkbox" name="Monk" value="Monk">Monk<br>
+				<input type="checkbox" name="Paladin" value="Paladin">Paladin
+				<input type="checkbox" name="Ranger" value="Ranger">Ranger
+				<input type="checkbox" name="Rogue" value="Rogue">Rogue<br>
+				<input type="checkbox" name="Sorcerer" value="Sorcerer">Sorcerer
+				<input type="checkbox" name="Warlock" value="Warlock">Warlock
+				<input type="checkbox" name="Wizard" value="Wizard">Wizard
+			</div>
+			<div id="classLevels" class="col-xs-4"></div>
+		</div>
+
+
+	</div>
+</body>
+</html>
