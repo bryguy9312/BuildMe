@@ -1,0 +1,96 @@
+{
+  "races": [
+    {
+      "race": "Dwarf",
+      "build": {
+        "weight": "150lb",
+        "height": "4-5ft",
+        "size": "Medium"
+      },
+      "Traits": {
+        "Darkvision": [
+          "You can see in dim light within 60 ft of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+        ],
+        "Dwarven Resiliance": [
+          "resistance against poison damage",
+          "advantage on saving throws against poison damage"
+        ],
+        "Dwarven Combat Training": [
+          "Battleaxe",
+          "Handaxe",
+          "Throwing Hammer",
+          "Warhammer"
+        ],
+        "Tool Proficiency": [
+          "Proficiency with one of the following: Smith's Tools, Brewer's Supplies, or Mason's Tools"
+        ],
+        "Stonecunning": [
+          "Whenever you make an INT (History) check related to the origin of stonework, you are considered proficieny in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
+        ],
+        "Languages": [
+          "Common",
+          "Dwarvish"
+        ]
+      },
+      "Subraces": {
+        "Hill Dwarf": {
+          "Ability Score Increase": "Wisdom +1",
+          "Dwarven Toughness": "Hitpoint max increased by 1, increased by 1 every time you gain a level"
+        },
+        "Mountain Dwarf": {
+          "Ability Score Increased": "Strenght +2",
+          "Dwarven Armor Training": "Proficiency with light + medium armor"
+        }
+      }
+    },
+    {
+      "race": "Elf",
+      "Build": {
+        "Age": "100-750 yrs",
+        "Alignment": "Normally chaotic goodish, drow usually evil",
+        "Size": "Medium",
+        "Height": "5-6+ ft",
+        "Speed": "30 ft/s"
+      },
+      "Traits": {
+        "Ability Score Increase": [
+          "DEX +2"
+        ],
+        "Darkvision": [
+          "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+        ],
+        "Keen Senses": [
+          "Proficiency in the Perception skill"
+        ],
+        "Trance": [
+          "Meditate for 4 hours instead of sleeping for 8 hours"
+        ],
+        "Languages": [
+          "Common",
+          "Elvish"
+        ]
+      },
+      "Subraces": {
+        "High Elf": {
+          "Ability Score Increased": "Int +1",
+          "Elf Weapon Training": "Proficiency with longsword, shortsword, shortbow, and longbow",
+          "Cantrip": "You know one cantrip of choice from the wizard spell list. Intelligence is your spellcasting ability for it.",
+          "Extra Language": "one extra language of choice"
+        },
+        "Wood Elf": {
+          "Ability Score Increase": "Wis +1",
+          "Elf Weapon Training": "Proficiency with the longsword, shortsword, shortbow, and longbow",
+          "Fleet of Foot": "Base walking speed is 35 ft/s",
+          "Mask of the Wild": "You can attempty to hide even when you are only slightly obscured by foilage, heavy rain, falling snow, mist, and other natural phenomena."
+        },
+        "Dark Elf (Drow)": {
+          "Ability Score Increase": "Cha + 1",
+          "Superior Darkvision": "Your darkvision has a radius of 120 feet",
+          "Sunlight Sensitivity": "YOu have disadvantage on attack rolls and on Wisdom(Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.",
+          "Drow Magic": "You know the Dancing Lights cnatrip. At 3rd level, you can cast the faerie fire spell once per day. At 5th level, you can also cast the Darnkess spell once per day. Charisma is your spellcasting ability for these spells.",
+          "Drow Weapon Training": "Proficiency with rapiers, shortswords, and hand crossbows."
+        }
+      }
+    }
+  ]
+}
