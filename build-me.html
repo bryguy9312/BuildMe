@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="custom.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
 	<script src="scripts/build-me.js"></script>
@@ -98,15 +99,19 @@
 				<label>Race:</label>
 				<select id="raceMenu">
 					<option value="0">---Pick a Race---</option>
-					<option value="1">Dwarf</option>
-					<option value="2">Elf</option>
-					<option value="3">Halfling</option>
-					<option value="4">Human</option>
-					<option value="5">Dragonborn</option>
-					<option value="6">Gnome</option>
-					<option value="7">Half-Elf</option>
-					<option value="8">Half-Orc</option>
-					<option value="9">Tiefling</option>
+					<option value="dwarf">Dwarf</option>
+					<option value="elf">Elf</option>
+					<option value="halfling">Halfling</option>
+					<option value="human">Human</option>
+					<option value="dragonborn">Dragonborn</option>
+					<option value="gnome">Gnome</option>
+					<option value="half-elf">Half-Elf</option>
+					<option value="half-orc">Half-Orc</option>
+					<option value="tiefling">Tiefling</option>
+				</select>
+				<label>Subrace:</label>
+				<select id="subraceMenu" disabled="disabled">
+					<option value="0">---Pick a Subrace---</option>
 				</select>
 			</div>
 
@@ -124,10 +129,15 @@
 				<input type="checkbox" name="Warlock" value="Warlock">Warlock
 				<input type="checkbox" name="Wizard" value="Wizard">Wizard
 			</div>
-			<div id="classLevels" class="col-xs-4"></div>
+			<div id="classLevels" class="col-xs-4">
+				<h1>Class Levels</h1>
+			</div>
+			</div>
 			<div id="spells" class="row">
 				<h1>Spells:</h1>
-				<div class="col-xs-4 spell"><input type="text"></div><button id="addSpell">Add Spell</button>
+				<div class="col-xs-4 spell"><input type="text"></div>
+				<div class="col-xs-4 spell"><input type="text"></div>
+				<div class="col-xs-4 spell"><input type="text"></div>
 			</div>
 			<div id="equipment" class="row"></div>
 			<div id="currency" class="row"></div>
@@ -136,7 +146,6 @@
 
 
 		</div>
-		<button id="logout">Log Out</button>
 	</div>
 </body>
 </html>
