@@ -77,55 +77,112 @@ $('document').ready(function() {
 		character.descrip.age = this.value;
 	});
 
+	//TODO populate this object with necessary functions, after making these functions, then replace redundant code when processing JSON files.
+
+
+
+
 	$('#raceMenu').on("change", function() {
-		//TODO check for current race, if it is not null then reset or reverse race parameters in order to make way for newly selected race
-		if(this.value == 0 || character.descrip.race != "") {
-			//reset parameters
-		}
-
-
-		if(this.value != 0) {
-			character.descrip.race = this.value;
-			//asynch, do all data manipulation here
-			$.getJSON("raceTraits.json", function(data) {
+		var selectedRaceVal = this.value;
+		//TODO make sure that I don't need another check for "select race" option here to reduce getJSON runs
+		//TODO ideally, there would be a way to make this more efficient but since the data is so small it shouldn't really matter
+		//asynch, do all data manipulation here
+		$.getJSON("raceTraits.json", function(data) {
+			//checks whether or not race parameters need to be reversed, then reverses
+			if(selectedRaceVal == 0 || (character.descrip.race != "" && character.descrip.race != selectedRaceVal)) {
 				var raceInfo = data[character.descrip.race];
-				console.log(data[character.descrip.race]);
-				//TODO set up a separate trait/feat abilScore modifier value
-				//add race abilScore modifier
 				$.each(raceInfo.abilityScores, function(key, value) {
-					modAbilScore(key, value);
+					modAbilScore(key, -value);
 				});
-				//set race size
-				character.descrip.size = raceInfo.size;
-				//generate and set height
-				character.descrip.height = genHeight(raceInfo.height);
-				//TODO generate weight instead of setting constant
-				//set weight based on race
-				character.descrip.weight = raceInfo.weight;
-				//set movespeed
-				character.descrip.moveSpeed = raceInfo.speed;
-				//TODO generate random starting age?
-				//set age based on race parameters
-				character.descrip.age = raceInfo.age;
-				//clear out character race traits then update with selected race
+				character.descrip.size = "";
+				character.descrip.height = 0;
+				character.descrip.weight = 0;
+				character.descrip.moveSpeed = 0;
+				character.descrip.age = 0;
 				character.stats.raceTraits = {};
-				$.each(raceInfo.traits, function(key, value) {
-					character.stats.raceTraits[key] = value;
-				});
-				//add race proficiencies to character object
-				$.each(raceInfo.proficiencies, function(key, value) {
-					$.each(value.split("-"), function(index, element) {
-						character.stats.proficiencies[key].push(element);
+				$.each(raceInfo.proficiencies, function(key, value){
+					$.each(value.split("-"), function (index, element) {
+						var profIndex = character.stats.proficiencies[key].indexOf(element);
+						if(profIndex > -1) {
+							character.stats.proficiencies[key].splice(element, 1);
+						}
 					})
-				})
-				//add subraces to select menu
-				$.each(raceInfo.subraces, function(index, element) {
-					$("#subraceMenu").append($("<option></option>").attr("value", element).text(element));
 				});
-				$("#subraceMenu").prop("disabled", false);
-			})
-		}
+				character.descrip.race = 0;
+				$("#subraceMenu").prop("disabled", "disabled");
+			}
+			// modifies character values based on selected race
+			if(selectedRaceVal != 0) {
+				character.descrip.race = selectedRaceVal;
+				var raceInfo = data[character.descrip.race];
+				//TODO set up a separate trait/feat abilScore modifier value?
+				$.each(raceInfo, function(key, value) {
+					console.log(key + " " + value);
+					charFunctions[key](value);
+				})
+			}
+			refreshHTMLFields();
+		})
 	});
+	//Helper functions for use in automated json handling
+	var charFunctions = {
+		updateAbilScores: updateAbilScores,
+		setMoveSpeed: setMoveSpeed,
+		setWeight: setWeight,
+		setHeight: setHeight,
+		setSize: setSize,
+		setAge: setAge,
+		setRaceTraits: setRaceTraits,
+		addProficiencies: addProficiencies,
+		updateSubraceMenu: updateSubraceMenu,
+		abilityScores: updateAbilScores,
+		size: setSize,
+		height: setHeight,
+		weight: setWeight,
+		speed: setMoveSpeed,
+		age: setAge,
+		raceTraits: setRaceTraits,
+		proficiencies: addProficiencies,
+		subraces: updateSubraceMenu
+	};
+	function updateSubraceMenu(subraces) {
+		$.each(subraces, function (index, element) {
+			$("#subraceMenu").append($("<option></option>").attr("value", element).text(element));
+		});
+		$("#subraceMenu").prop("disabled", false);
+	}
+	function addProficiencies(proficiencies) {
+		$.each(proficiencies, function (key, value) {
+			$.each(value.split("-"), function (index, element) {
+				character.stats.proficiencies[key].push(element);
+			})
+		})
+	}
+	function setRaceTraits(traits){
+		$.each(traits, function(key,value) {
+			character.stats.raceTraits[key] = value;
+		})
+	}
+	function setAge(age) {
+		character.descrip.age = age;
+	}
+	function setMoveSpeed(moveSpeed) {
+		character.descrip.moveSpeed = moveSpeed;
+	}
+	function setWeight(weightStr) {
+		character.descrip.weight = weightStr;
+	}
+	function setHeight(heightStr) {
+		character.descrip.height = genHeight(heightStr);
+	}
+	function setSize(size) {
+		character.descrip.size = size;
+	}
+	function updateAbilScores(abilScores) {
+		$.each(abilScores, function (key, value) {
+			modAbilScore(key, value);
+		})
+	}
 
 	$("#subraceMenu").on("change", function() {
 		if(this.value != 0) {
@@ -134,6 +191,20 @@ $('document').ready(function() {
 			})
 		}
 	});
+	//TODO complete this function
+	function refreshHTMLFields() {
+		$('#height').val(character.descrip.height);
+		$('#weight').val(character.descrip.weight);
+		$('#moveSpeed').val(character.descrip.moveSpeed);
+		$('#size').val(character.descrip.size);
+		$('#age').val(character.descrip.age);
+		//$('#abilityScores input').val(character.descrip.abilityScores[this.attr('id')] + character.descrip.abilityScoreModifiers[this.attr('id')]);
+		$('#abilityScores input').each(function() {
+			var abil = this.id;
+			$("#" + abil).val(character.stats.abilityScores[abil] + character.stats.abilityScoreModifiers[abil]);
+		});
+
+	}
 
 	function genHeight(heightString) {
 		var heightArray = heightString.split("-");
@@ -166,9 +237,7 @@ $('document').ready(function() {
 
 	function modAbilScore(abil, mod) {
 		abil = abil.toLowerCase();
-		console.log(character.stats.abilityScores[abil]);
-		character.stats.abilityScores[abil] += parseInt(mod);
-		console.log(character.stats.abilityScores[abil]);
+		character.stats.abilityScoreModifiers[abil] += parseInt(mod);
 	}
 
 	var character = {
@@ -192,6 +261,14 @@ $('document').ready(function() {
 		},
 		stats: {
 			abilityScores: {
+				str: 0,
+				dex: 0,
+				con: 0,
+				int: 0,
+				wis: 0,
+				cha: 0
+			},
+			abilityScoreModifiers: {
 				str: 0,
 				dex: 0,
 				con: 0,
