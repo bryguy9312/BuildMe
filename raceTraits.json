@@ -6,8 +6,8 @@
     "size": "medium",
     "height": "48-60",
     "weight": "150",
-    "speed": "25",
-    "age": "50",
+    "speed": 25,
+    "age": 50,
     "raceTraits": {
       "Darkvision": "Placeholder",
       "Dwarven Resilience": "PlaceHolder"
@@ -23,13 +23,13 @@
   },
   "elf": {
     "abilityScores": {
-      "dex": "2"
+      "dex": 2
     },
     "size": "medium",
     "height": "60-80",
-    "weight": "140",
-    "age": "100",
-    "speed": "30",
+    "weight": 140,
+    "age": 100,
+    "speed": 30,
     "proficiencies": {
       "weapon": "placeholder",
       "armor": "placeholder",
@@ -43,7 +43,7 @@
     "subraces": [
       "High Elf",
       "Wood Elf",
-      "Dark Elf"
+      "Dark Elf(Drow)"
     ]
   }
 }
